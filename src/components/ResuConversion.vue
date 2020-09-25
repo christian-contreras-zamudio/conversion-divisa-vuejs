@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
+  <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4" v-if="mostrar">
     <Loader v-show="loader" v-if="loader" :from="from" :to="to" />
     <transition name="slide-fade">
       <v-card class="" color="#26c6da" dark v-show="!loader" v-if="data">
@@ -28,6 +28,13 @@
           </v-list-item>
         </v-card-actions> -->
       </v-card>
+      <v-alert v-if="error" prominent type="error">
+        <v-row align="center">
+          <v-col class="grow">
+            ¡Ups! ocurrió un error, servicio no disponible.
+          </v-col>
+        </v-row>
+      </v-alert>
     </transition>
   </v-col>
 </template>
@@ -44,7 +51,9 @@ export default {
   },
   data: () => ({
     data: null,
-    loader: true
+    loader: true,
+    error: false,
+    mostrar: true
   }),
   methods: {
     convertir() {
@@ -63,8 +72,13 @@ export default {
           vm.loader = false;
         })
         .catch(function(error) {
-          console.log(error.response);
+          console.log(error.response.data);
           vm.loader = false;
+          vm.error = true;
+          setTimeout(() => {
+            vm.error = false;
+            vm.mostrar = false;
+          }, 5000);
         });
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card color="#3949AB" dark>
+    <v-card color="#3949AB" dark class="mx-auto">
       <v-card-title class="headline">Convertir divisa</v-card-title>
 
       <v-card-subtitle>
