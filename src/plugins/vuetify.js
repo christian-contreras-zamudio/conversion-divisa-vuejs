@@ -5,7 +5,7 @@ import es from "vuetify/es5/locale/es";
 Vue.use(Vuetify);
 
 export default new Vuetify({
-  theme: {
+  /* theme: {
     themes: {
       light: {
         primary: "#ee44aa",
@@ -17,7 +17,7 @@ export default new Vuetify({
         warning: "#FFC107"
       }
     }
-  },
+  }, */
   lang: {
     locales: { es },
     current: "es"
