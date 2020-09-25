@@ -3,7 +3,9 @@
     <AppBar />
     <v-main>
       <v-container grid-list-xl>
-        <router-view />
+        <keep-alive :include="['Home']">
+          <router-view />
+        </keep-alive>
       </v-container>
     </v-main>
   </v-app>
