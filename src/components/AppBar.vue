@@ -54,7 +54,7 @@ export default {
         {
           title: "Historial",
           icon: "mdi-history",
-          link: "/serviciosExtraordinarios"
+          link: "/historial"
         }
       ],
       mini: false,
