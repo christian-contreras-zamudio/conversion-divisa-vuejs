@@ -86,7 +86,6 @@ export default {
       await this.$refs.form.validate();
 
       if (this.valid) {
-        console.log("form valido");
         this.empezarConversion = true;
       }
     }

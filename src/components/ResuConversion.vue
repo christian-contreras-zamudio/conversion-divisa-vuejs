@@ -31,7 +31,7 @@
       <v-alert v-if="error" prominent type="error">
         <v-row align="center">
           <v-col class="grow">
-            ¡Ups! ocurrió un error, servicio no disponible.
+            {{ mensajeError }}
           </v-col>
         </v-row>
       </v-alert>
@@ -53,28 +53,25 @@ export default {
     data: null,
     loader: true,
     error: false,
-    mostrar: true
+    mostrar: true,
+    mensajeError: ""
   }),
   methods: {
     convertir() {
       let vm = this;
-      console.log(this.from);
-      console.log(this.to);
-      console.log(this.monto);
-      post("http://localhost:8001/api/moneda/convertir", {
+      post(`${process.env.VUE_APP_HOST}/api/moneda/convertir`, {
         from: this.from,
         to: this.to,
         monto: this.monto
       })
         .then(function(response) {
-          console.log(response.data);
           vm.data = response.data;
           vm.loader = false;
         })
         .catch(function(error) {
-          console.log(error.response.data);
           vm.loader = false;
           vm.error = true;
+          vm.mensajeError = error.response.data.message;
           setTimeout(() => {
             vm.error = false;
             vm.mostrar = false;
